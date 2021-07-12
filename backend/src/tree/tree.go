@@ -7,8 +7,8 @@ import (
 
 // Tree go brrrrr
 type Tree struct {
-	Value    interface{} `json:"genre"`
-	Children []*Tree     `json:"subgenres"`
+	Value    interface{} `json:"name"`
+	Children []*Tree     `json:"children"`
 }
 
 // NewTree go brrrrr
