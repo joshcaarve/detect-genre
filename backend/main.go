@@ -11,6 +11,7 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/api/books", routes.FindBooks)
+	r.GET("/api/hello", routes.Hello)
 	r.GET("/api/tree", routes.GetTree)
 	r.POST("api/file", routes.SaveFileHandler)
 	r.Run()
