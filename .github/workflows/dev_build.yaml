@@ -2,13 +2,15 @@ name: "dev build"
 on:
   push:
     branches-ignore:
-      master
+      - master
 env:
   FOO: bar
 
 jobs:
   foo:
+    name: "foo"
     runs-on: ubuntu-latest
-    - name: print
-      run: |
-        echo "Hello"
+    steps:
+      - name: print
+        run: |
+          echo "Hello"
