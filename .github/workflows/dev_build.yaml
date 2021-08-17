@@ -1,0 +1,16 @@
+name: "dev build"
+on:
+  push:
+    branches-ignore:
+      - master
+env:
+  FOO: bar
+
+jobs:
+  foo:
+    name: "foo"
+    runs-on: ubuntu-latest
+    steps:
+      - name: print
+        run: |
+          echo "Hello"
