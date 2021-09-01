@@ -3,15 +3,15 @@ package tree
 import (
 	"fmt"
 	"io"
+
+	_ "github.com/jinzhu/gorm"
 )
 
-// Tree go brrrrr
 type Tree struct {
 	Value    interface{} `json:"name"`
 	Children []*Tree     `json:"children"`
 }
 
-// NewTree go brrrrr
 func NewTree(v interface{}) *Tree {
 	return &Tree{
 		Children: []*Tree{},
@@ -23,7 +23,6 @@ func (t *Tree) String() string {
 	return fmt.Sprint(t.Value)
 }
 
-// PrettyPrint yup yup
 func (t *Tree) PrettyPrint(w io.Writer, prefix string) {
 	var inner func(int, *Tree)
 	inner = func(depth int, child *Tree) {
@@ -38,7 +37,6 @@ func (t *Tree) PrettyPrint(w io.Writer, prefix string) {
 	inner(0, t)
 }
 
-// AddChild yup yup
 func (t *Tree) AddChild(child interface{}) {
 	switch c := child.(type) {
 	case *Tree:

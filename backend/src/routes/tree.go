@@ -1,27 +1,31 @@
 package routes
 
 import (
-	"detect-genre/backend/src/tree"
+	"genre-tree/backend/src/adjlist"
+	"genre-tree/backend/src/database"
+	"genre-tree/backend/src/tree"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-// GetTree /return json of tree
+// this function though
+func AdjlistToTree() *tree.Tree {
+	var root []adjlist.AdjList
+	database.DB.Find(&root)
+
+	m := make(map[uint]*tree.Tree)
+	for _, entry := range root {
+		treeNode := tree.NewTree(entry.Name)
+		m[entry.ID] = treeNode
+		if value, ok := m[entry.Parent]; ok {
+			value.AddChild(treeNode)
+		}
+	}
+	return m[1] // root
+}
+
 func GetTree(c *gin.Context) {
-	root := tree.NewTree("Electronic")
-	dnB := tree.NewTree("DnB")
-	dnB.AddChild("Deep")
-	dnB.AddChild("Jungle")
-
-	house := tree.NewTree("House")
-	house.AddChild("Deep")
-	house.AddChild("BigRoom")
-
-	dubstep := tree.NewTree("Dubstep")
-
-	root.AddChild(dnB)
-	root.AddChild(house)
-	root.AddChild(dubstep)
+	root := AdjlistToTree()
 	c.JSON(http.StatusOK, gin.H{"data": root})
 }
