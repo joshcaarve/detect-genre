@@ -40,7 +40,8 @@ func main() {
 	r := gin.Default()
 	database.ConnectDataBase()
 	database.InitDB()
-	r.GET("/api/list", routes.GetAdjlist)
+	r.GET("/api/list", routes.GetAdjList)
+	r.POST("/api/list", routes.CreateAdjListEntry)
 	r.GET("/api/tree", routes.GetTree)
 	r.Run()
 
