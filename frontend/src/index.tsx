@@ -4,6 +4,7 @@ import './index.css';
 import TreeComponent from './components/tree/tree';
 import ButtonComponent from './components/button/button';
 import reportWebVitals from './reportWebVitals';
+import FormComponent from './components/form/form';
 
 /*
     <ButtonComponent 
@@ -15,11 +16,19 @@ import reportWebVitals from './reportWebVitals';
         width = "200px"
         children = "I'm a pink circle!"
       />
+          
 */
 ReactDOM.render(
   <React.StrictMode>
-    <TreeComponent />
-
+    <div>
+      <TreeComponent
+        name=""
+      />
+      <FormComponent
+        name="foo"
+        value="bar"
+      />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

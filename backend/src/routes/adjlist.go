@@ -9,28 +9,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-func UpdateAdjListEntry(c *gin.Context) {
-	// Get model if exist
-	var entry adjlist.AdjList
-	if err := database.DB.Where("id = ?", c.Param("id")).First(&entry).Error; err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
-		return
-	}
-
-	// Validate input
-	var input UpdateBookInput
-	if err := c.ShouldBindJSON(&input); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-		return
-	}
-
-	database.DB.Model(&book).Updates(input)
-
-	c.JSON(http.StatusOK, gin.H{"data": book})
-}
-*/
-
 func isLeafNode(entryID uint) bool {
 	var adjList adjlist.AdjList
 	if err := database.DB.Where("Parent = ?", entryID).First(&adjList).Error; err != nil {
@@ -79,7 +57,7 @@ func GetChildrenRequest(c *gin.Context) {
 
 func DeleteAdjListEntry(c *gin.Context) {
 	var adjList adjlist.AdjList
-	if err := database.DB.Where("ID = ?", c.Param("id")).First(&adjList).Error; err != nil {
+	if err := database.DB.Where("Name = ?", c.Param("name")).First(&adjList).Error; err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Record not found!"})
 		return
 	}
