@@ -16,8 +16,8 @@ URL = "http://{}:{}/{}".format(base, port, sys.argv[1])
 headers = {
     "Content-Type": "application/json"}
 data = {
-    "genre": "soul",
-    "parentGenre": "Deep"
+    "genre": "foo",
+    "parentGenre": "House"
 }
 data_to_send = json.dumps(data).encode("utf-8")
 response = requests.post(URL, headers=headers, data=data_to_send)

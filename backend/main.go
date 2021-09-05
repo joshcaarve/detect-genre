@@ -41,7 +41,10 @@ func main() {
 	database.ConnectDataBase()
 	database.InitDB()
 	r.GET("/api/list", routes.GetAdjList)
+	r.GET("/api/list/leaf/:id", routes.IsLeafNodeRequest)
+	r.GET("/api/list/children/:id", routes.GetChildrenRequest)
 	r.POST("/api/list", routes.CreateAdjListEntry)
+	r.DELETE("/api/list/:id", routes.DeleteAdjListEntry)
 	r.GET("/api/tree", routes.GetTree)
 	r.Run()
 

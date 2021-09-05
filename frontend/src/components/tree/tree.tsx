@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree'
-import './custom-tree.css';
-import './App.css';
+import './tree.css';
+
 
 interface IAppProps {
 }
@@ -13,9 +13,9 @@ interface RawNodeDatum {
   children?: RawNodeDatum[];
 }
 
-const App: React.FC<IAppProps> = props => {
+const TreeComponent: React.FC<IAppProps> = props => {
 
-  const [tree, setTree] = useState<RawNodeDatum>({name:'init'});
+  const [tree, setTree] = useState<RawNodeDatum>({ name: 'init' });
 
   const getTree = async () => {
     await fetch("/api/tree")
@@ -42,4 +42,4 @@ const App: React.FC<IAppProps> = props => {
     </div>
   )
 }
-export default App;
+export default TreeComponent;

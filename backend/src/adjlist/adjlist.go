@@ -7,6 +7,11 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
+type UpdateAdjListEntry struct {
+	Title  string `json:"title"`
+	Author string `json:"author"`
+}
+
 type AdjListEntry struct {
 	Name       string `json:"genre" binding:"required"`
 	ParentName string `json:"parentGenre" binding:"required"`
