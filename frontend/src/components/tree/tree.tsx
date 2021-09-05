@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import Tree from 'react-d3-tree'
-import './custom-tree.css';
-import './App.css';
+import './tree.css';
+
 
 interface IAppProps {
+  name: string
 }
 
 interface RawNodeDatum {
@@ -13,9 +14,9 @@ interface RawNodeDatum {
   children?: RawNodeDatum[];
 }
 
-const App: React.FC<IAppProps> = props => {
+const TreeComponent: React.FC<IAppProps> = props => {
 
-  const [tree, setTree] = useState<RawNodeDatum>({name:'init'});
+  const [tree, setTree] = useState<RawNodeDatum>({ name: props.name });
 
   const getTree = async () => {
     await fetch("/api/tree")
@@ -30,8 +31,7 @@ const App: React.FC<IAppProps> = props => {
   }, []);
 
   return (
-    <div id="treeWrapper" style={{ width: '1000em', height: '200em' }}>
-      <h1>Genre Tree</h1>
+    <div id="treeWrapper" style={{ width: '100em', height: '50em' }}>
       <Tree
         data={tree}
         orientation={"vertical"}
@@ -42,4 +42,4 @@ const App: React.FC<IAppProps> = props => {
     </div>
   )
 }
-export default App;
+export default TreeComponent;

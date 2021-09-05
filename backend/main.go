@@ -1,19 +1,22 @@
 package main
 
 import (
-	"detect-genre/backend/src/routes"
+	"genre-tree/backend/src/database"
+	"genre-tree/backend/src/routes"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/gin-gonic/gin"
 )
 
 func main() {
-
 	r := gin.Default()
-
-	r.GET("/api/books", routes.FindBooks)
-	r.GET("/api/hello", routes.Hello)
+	database.ConnectDataBase()
+	database.InitDB()
+	r.GET("/api/list", routes.GetAdjList)
+	r.GET("/api/list/leaf/:id", routes.IsLeafNodeRequest)
+	r.GET("/api/list/children/:id", routes.GetChildrenRequest)
+	r.POST("/api/list", routes.CreateAdjListEntry)
+	r.DELETE("/api/list/:name", routes.DeleteAdjListEntry)
 	r.GET("/api/tree", routes.GetTree)
-	r.POST("api/file", routes.SaveFileHandler)
 	r.Run()
-
 }
