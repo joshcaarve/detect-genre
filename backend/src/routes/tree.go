@@ -22,7 +22,7 @@ func AdjlistToTree() *tree.Tree {
 			value.AddChild(treeNode)
 		}
 	}
-	return m[1] // root
+	return m[1] // root has ID of 1 and PID of 0 so m[1] gives the root of the tree
 }
 
 func GetTree(c *gin.Context) {
